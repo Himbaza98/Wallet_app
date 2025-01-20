@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // MongoDB Connection
-const mongoURI = 'mongodb+srv://bookchretien:71Lz6EZXawYg9JIT@cluster0.aqjy7.mongodb.net/'; // MongoDB Atlas URI
+const mongoURI = process.env.mongoURI; // MongoDB Atlas URI
 mongoose
   .connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Connected to MongoDB locally'))
