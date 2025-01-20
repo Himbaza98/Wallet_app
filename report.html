@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction Reports</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">Wallet App</div>
+            <ul class="nav-links">
+                <li><a href="/index.html">Dashboard</a></li>
+                <li><a href="/budget.html">Budgets</a></li>
+                <li><a href="/report.html" class="active">Reports</a></li>
+                <button id="open-transaction-modal" class="add-transaction-btn">Add Transaction</button>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section id="report" class="report-form">
+            <h2>Generate Report</h2>
+            <form id="reportForm">
+                <label for="startDate">Start Date</label>
+                <input type="date" id="startDate" required>
+                <label for="endDate">End Date</label>
+                <input type="date" id="endDate" required>
+                <button type="submit">Generate Report</button>
+            </form>
+
+            <div id="reportContent">
+                <h3>Report Summary</h3>
+                <canvas id="expenseChart"></canvas>
+                <canvas id="incomeChart"></canvas>
+                <canvas id="balanceChart"></canvas>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Wallet Web Application</p>
+    </footer>
+
+    <script src="js/report.js"></script>
+</body>
+</html>

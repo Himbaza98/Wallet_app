@@ -1,0 +1,53 @@
+
+
+(() => {
+    const budgetNotification = document.getElementById("budgetNotification");
+
+})();
+// DOM Elements
+const budgetForm = document.getElementById("budgetForm");
+const budgetInput = document.getElementById("budget");
+// const budgetNotification = document.getElementById("budgetNotification");
+
+// Event Listener for Budget Form Submission
+budgetForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  // Get the trimmed budget amount
+  const budgetAmount = budgetInput.value;
+  const parsedBudgetAmount = parseFloat(budgetAmount);
+
+  // Validate budget amount
+  if (!isNaN(parsedBudgetAmount) && parsedBudgetAmount > 0) {
+    // Save the budget amount to localStorage
+    localStorage.setItem("budgetAmount", parsedBudgetAmount);
+
+    // Notify the user
+    budgetNotification.textContent = `Budget set to ${parsedBudgetAmount.toFixed(2)}`;
+    budgetNotification.style.color = "green";
+
+    // Clear the input field
+    budgetInput.value = "";
+  } else {
+    // Display error message
+    budgetNotification.textContent = "Please enter a valid budget amount.";
+    budgetNotification.style.color = "red";
+  }
+});
+
+// Function to check budget and expenses
+function checkBudget(expenses) {
+  // Get the budget amount from localStorage
+  const budgetAmount = parseFloat(localStorage.getItem("budgetAmount"));
+
+  // Debug: Log stored budget amount
+  console.log("Stored budget amount:", budgetAmount);
+
+  // If budget is exceeded, notify the user
+  if (!isNaN(budgetAmount) && expenses > budgetAmount) {
+    budgetNotification.textContent = "Warning: Expenses have exceeded the budget!";
+    budgetNotification.style.color = "red";
+  } else {
+    budgetNotification.textContent = "";
+  }
+}

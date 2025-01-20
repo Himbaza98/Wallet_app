@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Categories and Subcategories</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-container">
+      <div class="navbar-logo">Wallet App</div>
+      <ul class="nav-links">
+        <li><a href="/index.html">Dashboard</a></li>
+        <li><a href="/budget.html">Budgets</a></li>
+        <li><a href="/categories.html" class="active">Categories</a></li>
+        <li><a href="/report.html">Reports</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <section id="categories-section" class="section">
+      <h2>Manage Categories and Subcategories</h2>
+
+      <!-- Add Category Form -->
+      <form id="add-category-form" class="form">
+        <h3>Add Category</h3>
+        <label for="category-name">Category Name</label>
+        <input type="text" id="category-name" placeholder="Enter category name" required />
+        <button type="submit">Add Category</button>
+      </form>
+
+      <!-- Add Subcategory Form -->
+      <form id="add-subcategory-form" class="form">
+        <h3>Add Subcategory</h3>
+        <label for="category-select">Select Category</label>
+        <select id="category-select" required>
+          <option value="">Select a category</option>
+        </select>
+        <label for="subcategory-name">Subcategory Name</label>
+        <input type="text" id="subcategory-name" placeholder="Enter subcategory name" required />
+        <button type="submit">Add Subcategory</button>
+      </form>
+
+      <!-- Display Categories and Subcategories -->
+      <div id="categories-display" class="display">
+        <h3>Current Categories and Subcategories</h3>
+        <ul id="categories-list">
+          <!-- Categories and subcategories will be dynamically added here -->
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Wallet Web Application</p>
+  </footer>
+
+  <script src="js/categories.js"></script>
+</body>
+</html>

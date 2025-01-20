@@ -11,8 +11,8 @@
         <div class="navbar-container">
             <div class="navbar-logo">Wallet App</div>
             <ul class="nav-links">
-                <li><a href="/index.html" class="active">Dashboard</a></li>
-                <li><a href="/budget.html">Budgets</a></li>
+                <li><a href="/index.html">Dashboard</a></li>
+                <li><a href="/budget.html" class="active">Budgets</a></li>
                 <li><a href="/categories.html">Categories/Subcategories</a></li>
                 <li><a href="/report.html">Reports</a></li>
                 <button id="open-transaction-modal" class="add-transaction-btn">Add Transaction</button>
@@ -21,23 +21,14 @@
     </nav>
 
     <main>
-        <section id="dashboard" class="dashboard section">
-            <h1>Dashboard</h1>
-            <div class="dashboard-cards">
-                <div class="card">
-                    <h3>Income</h3>
-                    <p id="income">0.00</p>
-                </div>
-                <div class="card">
-                    <h3>Expenses</h3>
-                    <p id="expenses">0.00</p>
-                </div>
-                <div class="card">
-                    <h3>Balance</h3>
-                    <p id="balance">0.00</p>
-                </div>
-            </div>
-            <!-- <p id="budgetNotification" class="notification"></p> Ensure this line exists -->
+        <section id="budget" class="transaction-form">
+            <h2>Set Budget</h2>
+            <form id="budgetForm">
+                <label for="budget">Budget Amount</label>
+                <input type="number" id="budget" required>
+                <button type="submit">Set Budget</button>
+            </form>
+            <p id="budgetNotification" class="notification"></p>
         </section>
     </main>
 
@@ -45,6 +36,7 @@
         <p>&copy; 2025 Wallet Web Application</p>
     </footer>
 
+    <script src="js/budget.js"></script>
     <script src="js/script.js"></script>
     <script src="js/transaction-form.js"></script>
 </body>
