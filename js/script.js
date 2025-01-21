@@ -43,18 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       }
     
-      // Handle Budget Form
-      // if (budgetForm) {
-      //   budgetForm.addEventListener("submit", (e) => {
-      //     e.preventDefault();
-      //     budget = parseFloat(document.getElementById("budget").value);
-    
-      //     if (budgetNotification) {
-      //       budgetNotification.textContent = `Budget set to $${budget}`;
-      //       budgetNotification.style.color = "green";
-      //     }
-      //   });
-      // }
+      
     
       // Update Dashboard
       function updateDashboard() {

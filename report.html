@@ -21,21 +21,80 @@
     </nav>
 
     <main>
-        <section id="report" class="report-form">
-            <h2>Generate Report</h2>
-            <form id="reportForm">
-                <label for="startDate">Start Date</label>
-                <input type="date" id="startDate" required>
-                <label for="endDate">End Date</label>
-                <input type="date" id="endDate" required>
-                <button type="submit">Generate Report</button>
-            </form>
+        <section id="report" class="report-section">
+            <div class="report-header">
+                <h2>Financial Report</h2>
+            </div>
 
-            <div id="reportContent">
-                <h3>Report Summary</h3>
-                <canvas id="expenseChart"></canvas>
-                <canvas id="incomeChart"></canvas>
-                <canvas id="balanceChart"></canvas>
+            <div class="report-grid">
+                <!-- Filters Panel -->
+                <div class="filters-panel">
+                    <form id="reportForm">
+                        <div class="filter-group">
+                            <h3>Time Period</h3>
+                            <div class="time-filter">
+                                <select id="reportType" required>
+                                    <option value="custom">Custom Date Range</option>
+                                    <option value="week">Last Week</option>
+                                    <option value="month">Last Month</option>
+                                    <option value="year">Last Year</option>
+                                </select>
+                            </div>
+                            
+                            <div id="dateRangeInputs" class="date-inputs">
+                                <div class="date-group">
+                                    <label for="startDate">From</label>
+                                    <input type="date" id="startDate" required>
+                                </div>
+                                <div class="date-group">
+                                    <label for="endDate">To</label>
+                                    <input type="date" id="endDate" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="filter-group">
+                            <h3>Categories</h3>
+                            <select id="categoryFilter" multiple>
+                                <option value="all" selected>All Categories</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="generate-btn">Generate Report</button>
+                    </form>
+                </div>
+
+                <!-- Summary Cards -->
+                <div class="summary-cards">
+                    <div class="summary-card income">
+                        <h4>Total Income</h4>
+                        <p id="totalIncome">$0.00</p>
+                    </div>
+                    <div class="summary-card expenses">
+                        <h4>Total Expenses</h4>
+                        <p id="totalExpenses">$0.00</p>
+                    </div>
+                    <div class="summary-card balance">
+                        <h4>Net Balance</h4>
+                        <p id="netBalance">$0.00</p>
+                    </div>
+                </div>
+
+                <!-- Charts Grid -->
+                <div class="charts-grid">
+                    <div class="chart-card">
+                        <h3>Income vs Expenses</h3>
+                        <div class="chart-container">
+                            <canvas id="incomeExpenseChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Expense Categories</h3>
+                        <div class="chart-container">
+                            <canvas id="categoryChart"></canvas>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
