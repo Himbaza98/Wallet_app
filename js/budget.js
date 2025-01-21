@@ -12,18 +12,18 @@ const budgetInput = document.getElementById("budget");
 // Event Listener for Budget Form Submission
 budgetForm.addEventListener("submit", (e) => {
   e.preventDefault();
-
+   
   // Get the trimmed budget amount
-  const budgetAmount = budgetInput.value;
-  const parsedBudgetAmount = parseFloat(budgetAmount);
-
-  // Validate budget amount
+  const budgetAmount = e.target.querySelector('#budget').value;
+  const parsedBudgetAmount = parseFloat(Number(budgetAmount));
+  
+// Validate budget amount
   if (!isNaN(parsedBudgetAmount) && parsedBudgetAmount > 0) {
     // Save the budget amount to localStorage
     localStorage.setItem("budgetAmount", parsedBudgetAmount);
 
     // Notify the user
-    budgetNotification.textContent = `Budget set to ${parsedBudgetAmount.toFixed(2)}`;
+    budgetNotification.textContent = `Budget set to ${parsedBudgetAmount}`;
     budgetNotification.style.color = "green";
 
     // Clear the input field
