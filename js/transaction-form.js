@@ -73,6 +73,11 @@ const incomeField = document.getElementById("income");
 const expensesField = document.getElementById("expenses");
 const balanceField = document.getElementById("balance");
 
+// Add notification div to the body
+const notificationDiv = document.createElement('div');
+notificationDiv.className = 'notification';
+document.body.appendChild(notificationDiv);
+
 // Open and Close Modal
 openModalBtn.addEventListener("click", () => {
   modal.style.display = "block";
@@ -148,8 +153,6 @@ document.getElementById("transaction-form").addEventListener("submit", async (e)
     date: document.getElementById("date").value,
   };
 
-  console.log("Submitting transaction:", transaction);
-  
   
 
   // Send Data to the Backend
@@ -204,12 +207,50 @@ async function updateDashboard() {
       incomeField.textContent = totalIncome.toFixed(2);
       expensesField.textContent = totalExpenses.toFixed(2);
       balanceField.textContent = balance.toFixed(2);
-    } else {
-      console.error("Failed to fetch transactions for dashboard.");
+
+      // Update budget comparison
+      const budgetAmount = parseFloat(localStorage.getItem("budgetAmount")) || 0;
+      const budgetStatus = document.getElementById("budgetStatus");
+      const expenseProgress = document.getElementById("expenseProgress");
+      
+      if (budgetAmount > 0) {
+        const expensePercentage = (totalExpenses / budgetAmount) * 100;
+        expenseProgress.style.width = Math.min(expensePercentage, 100) + '%';
+        
+        if (expensePercentage >= 100) {
+          expenseProgress.className = 'progress danger';
+          budgetStatus.textContent = `Budget Exceeded! (${expensePercentage.toFixed(1)}%)`;
+          budgetStatus.style.color = '#FF4444';
+          showNotification('Warning: Your expenses have exceeded the budget!');
+        } else if (expensePercentage >= 80) {
+          expenseProgress.className = 'progress warning';
+          budgetStatus.textContent = `Near Budget Limit (${expensePercentage.toFixed(1)}%)`;
+          budgetStatus.style.color = '#FFA500';
+          showNotification('Warning: You are approaching your budget limit!');
+        } else {
+          expenseProgress.className = 'progress';
+          budgetStatus.textContent = `Within Budget (${expensePercentage.toFixed(1)}%)`;
+          budgetStatus.style.color = '#4CAF50';
+        }
+      } else {
+        budgetStatus.textContent = 'No budget set';
+        expenseProgress.style.width = '0%';
+      }
     }
   } catch (error) {
-    console.error("Error fetching transactions for dashboard:", error);
+    console.error("Error updating dashboard:", error);
   }
+}
+
+// Function to show notification
+function showNotification(message) {
+  notificationDiv.textContent = message;
+  notificationDiv.style.display = 'block';
+  
+  // Hide notification after 5 seconds
+  setTimeout(() => {
+    notificationDiv.style.display = 'none';
+  }, 5000);
 }
 
 // Initial Dashboard Update on Page Load
