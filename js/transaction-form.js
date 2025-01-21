@@ -149,8 +149,7 @@ document.getElementById("transaction-form").addEventListener("submit", async (e)
   };
 
   console.log("Submitting transaction:", transaction);
-  console.log("Categories Object:", categories);
-  console.log("Selected Category:", selectedCategory);
+  
   
 
   // Send Data to the Backend
