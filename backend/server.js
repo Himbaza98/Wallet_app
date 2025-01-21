@@ -5,7 +5,7 @@ const cors = require('cors');
 const Transaction = require('./models/transactions'); // Import the Transaction schema
 
 const app = express();
-const PORT = 5000; // Port number for the server
+const PORT = process.env.PORT || 5000; // Use the PORT from environment variables
 
 // Middleware
 app.use(bodyParser.json());
@@ -17,6 +17,11 @@ mongoose
   .connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Connected to MongoDB locally'))
   .catch((err) => console.error('MongoDB connection error:', err));
+
+// Default route
+app.get('/', (req, res) => {
+  res.send('Welcome to the Transactions API!');
+});
 
 // API Routes
 
@@ -53,12 +58,7 @@ app.get('/api/transactions/account/:type', async (req, res) => {
   }
 });
 
-// Start the server
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
-
-// 3. Fetch transactions within a date range
+// 4. Fetch transactions within a date range
 app.get('/api/transactions/range', async (req, res) => {
   const { startDate, endDate } = req.query;
 
@@ -73,4 +73,9 @@ app.get('/api/transactions/range', async (req, res) => {
   } catch (err) {
     res.status(400).send({ error: 'Failed to fetch transactions', details: err });
   }
+});
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(Server is running on http://localhost:${PORT});
 });
