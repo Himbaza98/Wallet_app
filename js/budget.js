@@ -24,7 +24,7 @@ budgetForm.addEventListener("submit", (e) => {
 
     // Notify the user
     budgetNotification.textContent = `Budget set to ${parsedBudgetAmount}`;
-    budgetNotification.style.color = "green";
+    budgetNotification.style.color = "orange";
 
     // Clear the input field
     budgetInput.value = "";
@@ -39,9 +39,7 @@ budgetForm.addEventListener("submit", (e) => {
 function checkBudget(expenses) {
   // Get the budget amount from localStorage
   const budgetAmount = parseFloat(localStorage.getItem("budgetAmount"));
-
-  // Debug: Log stored budget amount
-  console.log("Stored budget amount:", budgetAmount);
+  
 
   // If budget is exceeded, notify the user
   if (!isNaN(budgetAmount) && expenses > budgetAmount) {
